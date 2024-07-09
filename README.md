@@ -11,7 +11,7 @@
     * [Asignar variables](#asignar-variables)
     * [Uso de la opción output](#uso-de-la-opción-output)
   * [📷 Manipulación de imágenes](#-manipulación-de-imágenes)
-    * [Cortar imagen](#cortar-imagen)
+    * [Recortar imagen](#recortar-imagen)
     * [Establecer aspect-ratio](#establecer-aspect-ratio)
     * [Reducir el peso de la imagen](#reducir-el-peso-de-la-imagen)
     * [Transformar la imagen](#transformar-la-imagen)
