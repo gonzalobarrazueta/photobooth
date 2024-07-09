@@ -32,9 +32,10 @@ Ejemplos de uso
 ```
 set image="path_to_name.jpg"
 set out="modified_image.jpg"
+
 compress image quality=70 output=out
 ```
-La función `compress` reduce el peso del archivo en bytes.
+Para mayor información sobre el comando `compress`, consulte la sección [Reducir el peso de la imagen](#reducir-el-peso-de-la-imagen).
 
 ### Uso de la opción `output`
 La opción `output` especifica el nombre del archivo donde se guardará la imagen modificada.
@@ -63,6 +64,13 @@ crop [image_path] smart aspect-ratio=1:1
 - `image_path`: representa la ruta de la imagen a modificar.
 - `aspect-ratio`: representa la relación de aspecto de la imagen resultante.
 - `smart` _(opcional)_: identifica la región más relevante de la imagen y la recorta en base a la relación de aspecto especificada. Para lograr esta identificación, esta función hace uso de [Azure AI Services](https://learn.microsoft.com/en-us/rest/api/computervision/generate-thumbnail/generate-thumbnail?view=rest-computervision-v3.2&tabs=HTTP).
+
+### Reducir el peso de la imagen
+Reduce el peso del archivo en bytes.
+```
+compress [image_path] quality=85
+```
+- `quality`: representa la calidad de la imagen resultante. En este ejemplo, la calidad será comprimida al 85% de la calidad original.
 
 ## 📽️ Manipulación de videos
 
