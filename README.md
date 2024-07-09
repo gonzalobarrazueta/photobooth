@@ -9,11 +9,20 @@
   * [🏗️ Tabla de contenidos](#-tabla-de-contenidos)
   * [Consideraciones generales](#consideraciones-generales)
     * [Asignar variables](#asignar-variables)
-    * [Uso de la opción `output`](#uso-de-la-opción-output)
+    * [Uso de la opción output](#uso-de-la-opción-output)
   * [📷 Manipulación de imágenes](#-manipulación-de-imágenes)
     * [Cortar imagen](#cortar-imagen)
     * [Establecer aspect-ratio](#establecer-aspect-ratio)
+    * [Reducir el peso de la imagen](#reducir-el-peso-de-la-imagen)
+    * [Transformar la imagen](#transformar-la-imagen)
+    * [Aplicar filtros](#aplicar-filtros)
+    * [Pintar fondo](#pintar-fondo)
+    * [Difuminar fondo](#difuminar-fondo)
   * [📽️ Manipulación de videos](#-manipulación-de-videos)
+    * [Recortar video](#recortar-video)
+    * [Convertir a gif](#convertir-a-gif)
+    * [Ajustar velocidad](#ajustar-velocidad)
+    * [Extraer audio](#extraer-audio)
   * [🕹️ Demo](#-demo)
   * [🔨 Herramientas utilizadas](#-herramientas-utilizadas)
   * [✍️ Autor](#-autor)
@@ -37,18 +46,18 @@ compress image quality=70 output=out
 ```
 Para mayor información sobre el comando `compress`, consulte la sección [Reducir el peso de la imagen](#reducir-el-peso-de-la-imagen).
 
-### Uso de la opción `output`
+### Uso de la opción output
 La opción `output` especifica el nombre del archivo donde se guardará la imagen modificada.
 ````
 output="image_path.jpg"
 ````
 - Puede ser utilizada agregándola al final de cualquier comando.
-- La opción `output` es opcional, a menos que se especifique lo contrario.
-- Si la opción `output` no es especificada, la imagen original será sobrescrita.
+- Es opcional, a menos que se especifique lo contrario.
+- Si la opción no es especificada, la imagen original será sobrescrita.
 
 ## 📷 Manipulación de imágenes
 
-### Cortar imagen
+### Recortar imagen
 ```
 crop [image_path] w=100 h=250
 ```
@@ -152,7 +161,7 @@ adjust speed [video_path] rate=1.25
 ```
 - `rate`: representa la velocidad del video resultante.
 
-### Extract audio
+### Extraer audio
 
 Obtiene el audio del video y lo guarda en un archivo `mp3`.
 
