@@ -96,6 +96,33 @@ Si se selecciona la forma personalizada, adicionalmente, se tendrá que especifi
 transform [image_path] shape=custom svg-path="mask.svg"
 ```
 
+### Aplicar filtros
+
+Aplica un filtro a la imagen.
+
+Filtros disponibles: `mono`, `sepia`, `comic`, `painting`
+
+```
+apply filter=mono [image_path] 
+```
+
+### Pintar fondo
+
+Pinta el fondo de la imagen con un color sólido.
+
+Colores de fondo disponibles: `white`, `black`, `green`, `yellow`, `blue`
+
+```
+paint background [image_path] color=green
+```
+
+### Difuminar fondo
+
+Detecta el objeto principal de la imagen y difumina el fondo.
+```
+blur background [image_path]
+```
+
 ## 📽️ Manipulación de videos
 
 ## 🕹️ Demo
