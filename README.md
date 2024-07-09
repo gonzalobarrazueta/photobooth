@@ -125,6 +125,42 @@ blur background [image_path]
 
 ## 📽️ Manipulación de videos
 
+### Recortar video
+
+Recorta un video en base a un intervalo de tiempo.
+```
+trim video [video_path] from=1:15 to=3:15
+```
+- `video_path`: representa la ruta del video a modificar.
+- `from`: representa el tiempo de inicio del intervalo en el formato `minutos:segundos`.
+- `to`: representa el tiempo de fin del intervalo en el formato `minutos:segundos`.
+
+### Convertir a gif
+
+Convierte una sección del video a un gif.
+```
+convert video [video_path] from=1:15 to=3:15 format=gif
+```
+
+### Ajustar velocidad
+
+Modifica la velocidad del video.
+
+Las velocidades disponibles son: `0.25`, `0.5`, `1.25`, `1.5`, `2`.
+```
+adjust speed [video_path] rate=1.25
+```
+- `rate`: representa la velocidad del video resultante.
+
+### Extract audio
+
+Obtiene el audio del video y lo guarda en un archivo `mp3`.
+
+Por defecto, el archivo de audio se guardará con el nombre `audio.mp3`. Esto puede ser modificado utilizando la opción `output`.
+```
+extract audio [video_path]
+```
+
 ## 🕹️ Demo
 
 ## 🔨 Herramientas utilizadas
