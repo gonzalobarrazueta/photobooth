@@ -72,6 +72,30 @@ compress [image_path] quality=85
 ```
 - `quality`: representa la calidad de la imagen resultante. En este ejemplo, la calidad será comprimida al 85% de la calidad original.
 
+### Transformar la imagen
+Cambia la forma de una imagen a diferentes figuras geométricas.
+
+Formas disponibles: `circular`, `elliptical`, `triangular`, `hexagonal`, `heart`, `star`, `rounded_rectangle`, `rhombus`, `custom`
+```
+transform [image_path] shape=circular
+```
+
+**Caso `shape=triangular`**
+
+Si se selecciona la forma triangular, adicionalmente, se tendrá que especificar el tipo de tríangulo.
+
+```
+transform [image_path] shape=triangular type=[equilateral|isosceles|scalene]
+```
+
+**Caso `shape=custom`**
+
+Si se selecciona la forma personalizada, adicionalmente, se tendrá que especificar la ruta de la imagen que se utilizará como máscara.
+
+```
+transform [image_path] shape=custom svg-path="mask.svg"
+```
+
 ## 📽️ Manipulación de videos
 
 ## 🕹️ Demo
