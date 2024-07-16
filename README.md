@@ -7,7 +7,7 @@
 <!-- TOC -->
 * [photobooth](#photobooth)
   * [🏗️ Tabla de contenidos](#-tabla-de-contenidos)
-  * [Consideraciones generales](#consideraciones-generales)
+  * [💡 Consideraciones generales](#-consideraciones-generales)
     * [Asignar variables](#asignar-variables)
     * [Uso de la opción output](#uso-de-la-opción-output)
   * [📷 Manipulación de imágenes](#-manipulación-de-imágenes)
@@ -28,7 +28,7 @@
   * [✍️ Autor](#-autor)
 <!-- TOC -->
 
-## Consideraciones generales
+## 💡 Consideraciones generales
 
 ### Asignar variables
 ```
