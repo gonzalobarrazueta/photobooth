@@ -1,0 +1,39 @@
+start: command
+
+// TERMINALS
+VARIABLE: /[a-zA-Z_][a-zA-Z0-9_]+/
+ANY_TEXT: /[a-zA-Z0-9-_.]+/
+IMAGE_FORMAT: ".jpg" | ".png"
+FOLDER_PATH: "\"" ANY_TEXT "\""
+IMAGE_PATH: "\"" ANY_TEXT IMAGE_FORMAT "\""
+ASPECT_RATIO: "aspect-ratio=" ("1:1" | "9:16" | "16:9" | "3:4" | "4:3")
+IMAGE_SHAPES: "circular" | "elliptical" | "triangular" | "hexagonal" | "heart" | "star" | "rounded_rectangle" | "rhombus" | "custom"
+TRIANGLE_TYPE: "type=" ("equilateral" | "isosceles" | "scalene")
+CUSTOM_SHAPE: "svg-path=" "\"" ANY_TEXT ".svg\""
+FILTERS: "mono" | "sepia" | "comic" | "painting"
+COLORS: "white" | "black" | "green" | "yellow" | "blue"
+VIDEO_PATH: "\"" ANY_TEXT ".mp4" "\""
+VIDEO_SEGMENT: /[0-9]+/ ":" /[0-9]+/
+SPEED_RATES: "0.5" | "0.50" | "1.25" | "1.5" | "1.50" | "2" | "2.0"
+AUDIO_PATH: "\"" ANY_TEXT ".mp3" "\""
+OUTPUT: "output=" (IMAGE_PATH | VIDEO_PATH | AUDIO_PATH)
+
+// RULES
+set_var: "set" VARIABLE "=" "\"" ANY_TEXT "\""
+crop_image: "crop" "image" IMAGE_PATH "w=" /\d+/ "h=" /\d+/ [OUTPUT]
+crop_image_aspect_ratio: "crop" "image" IMAGE_PATH ["smart"] ASPECT_RATIO [OUTPUT]
+compress_image: "compress" IMAGE_PATH "quality=" /[0-9]+/ [OUTPUT]
+transform_image: "transform" IMAGE_PATH "shape=" IMAGE_SHAPES [CUSTOM_SHAPE] [TRIANGLE_TYPE] [OUTPUT]
+convert_to_gif: "convert" FOLDER_PATH "format=gif" [OUTPUT]
+add_filter: "add" "filter=" FILTERS IMAGE_PATH [OUTPUT]
+paint_bg: "paint" "background" IMAGE_PATH "color=" COLORS [OUTPUT]
+blur_bg: "blur" "background" IMAGE_PATH [OUTPUT]
+trim_video: "trim" "video" VIDEO_PATH "from=" VIDEO_SEGMENT "to=" VIDEO_SEGMENT [OUTPUT]
+video_to_gif: "convert" "video" VIDEO_PATH "from=" VIDEO_SEGMENT "to=" VIDEO_SEGMENT [OUTPUT]
+merge_videos: "merge" "videos" VIDEO_PATH VIDEO_PATH [OUTPUT]
+adjust_speed: "adjust" "speed" VIDEO_PATH "rate=" SPEED_RATES [OUTPUT]
+extract_audio: "extract" "audio" VIDEO_PATH [OUTPUT]
+command: set_var | crop_image | crop_image_aspect_ratio | compress_image | transform_image | convert_to_gif | convert_to_gif | add_filter | paint_bg | blur_bg | trim_video | video_to_gif | merge_videos | adjust_speed | extract_audio
+
+// Disregard spaces in text
+%ignore " "
