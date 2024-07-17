@@ -1,5 +1,6 @@
 from lark import Lark, Transformer
 from photobooth_dsl.commands.crop_image import crop
+from photobooth_dsl.utils.variables_util import is_variable
 
 
 class PhotoboothTransformer(Transformer):
@@ -16,7 +17,7 @@ class PhotoboothTransformer(Transformer):
         image_path, width, height, output = args
 
         # Handle case where the image path is a variable
-        if not image_path.startswith('"') and not image_path.endswith('"'):
+        if is_variable(image_path):
             image_path = self.variables[image_path]
 
         crop(image_path, int(width), int(height), output)
