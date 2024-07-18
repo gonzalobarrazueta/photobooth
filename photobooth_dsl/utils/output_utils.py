@@ -12,10 +12,10 @@ def check_format(file_name):
 
 
 # The value argument is an image path or a variable
-def get_images_folder(value, folder):
+def get_image_folder(folder, value):
     if folder == "original":
         return "photobooth_dsl/images/original/" + value
     elif folder == "modified":
-        return "photobooth_dsl/images/modified_images/" + value
+        return "photobooth_dsl/images/modified/" + value
     else:
         raise ValueError("Invalid folder type specified. Choose 'original' or 'modified'.")
