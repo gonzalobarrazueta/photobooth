@@ -19,3 +19,10 @@ def get_image_folder(folder, value):
         return "photobooth_dsl/images/modified/" + value
     else:
         raise ValueError("Invalid folder type specified. Choose 'original' or 'modified'.")
+
+
+def get_output(output):
+    if output is None:
+        return None
+    else:
+        return output.strip("'")
