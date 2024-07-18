@@ -20,7 +20,7 @@ class PhotoboothTransformer(Transformer):
         if is_variable(image_path):
             image_path = self.variables[image_path]
 
-        crop(image_path, int(width), int(height), output)
+        crop(image_path.strip("'"), int(width), int(height), None if output is None else output.strip("'"))
         return args
 
 
