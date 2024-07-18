@@ -1,6 +1,8 @@
 from lark import Lark, Transformer
 from photobooth_dsl.commands.crop_image import crop
+from photobooth_dsl.commands.crop_aspect import crop_aspect
 from photobooth_dsl.utils.variables_util import is_variable
+from photobooth_dsl.utils.output_utils import get_output
 
 
 class PhotoboothTransformer(Transformer):
@@ -21,6 +23,17 @@ class PhotoboothTransformer(Transformer):
             image_path = self.variables[image_path]
 
         crop(image_path.strip("'"), int(width), int(height), None if output is None else output.strip("'"))
+        return args
+
+    def crop_aspect(self, args):
+        image_path, smart, aspect_ratio, output = args
+
+        # Handle case where the image path is a variable
+        if is_variable(image_path):
+            image_path = self.variables[image_path]
+
+        crop_aspect(image_path.strip("'"), True if smart else False, aspect_ratio, get_output(output))
+
         return args
 
 
