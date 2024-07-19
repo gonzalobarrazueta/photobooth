@@ -25,18 +25,21 @@ def crop_aspect(image_name, smart, aspect_ratio, output):
         credential=AzureKeyCredential(key)
     )
 
-    with open(get_image_folder("original", image_name), "rb") as f:
-        image_data = f.read()
+    if smart is True:
+        with open(get_image_folder("original", image_name), "rb") as f:
+            image_data = f.read()
 
-    modified_image = client.analyze(
-        image_data=image_data,
-        visual_features=[VisualFeatures.SMART_CROPS],
-        smart_crops_aspect_ratios=[aspect_ratio_mapping(aspect_ratio)]
-    )
+        modified_image = client.analyze(
+            image_data=image_data,
+            visual_features=[VisualFeatures.SMART_CROPS],
+            smart_crops_aspect_ratios=[aspect_ratio_mapping(aspect_ratio)]
+        )
 
-    if modified_image is not None:
-        smart_crop_values = modified_image.smart_crops.list[0]["boundingBox"]
-        print(smart_crop_values)
-        
-    crop(image_name, smart_crop_values['w'], smart_crop_values['h'], output,
-         smart_crop_values['x'], smart_crop_values['y'])
+        if modified_image is not None:
+            smart_crop_values = modified_image.smart_crops.list[0]["boundingBox"]
+            print(smart_crop_values)
+
+        crop(image_name, smart_crop_values['w'], smart_crop_values['h'], output,
+             smart_crop_values['x'], smart_crop_values['y'])
+    else:
+        return
