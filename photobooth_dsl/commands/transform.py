@@ -7,7 +7,7 @@ from photobooth_dsl.utils.output_utils import get_image_folder, get_shape
 
 def transform_image(image_name, shape, custom_shape, triangle_type, output):
 
-    image = Image.open(get_image_folder('original', image_name))
+    image = Image.open(get_image_folder('original', image_name)).convert("RGBA") # Ensure the image has an alpha channel
     width, height = image.size
 
     # Load and parse the SVG path
@@ -39,15 +39,16 @@ def transform_image(image_name, shape, custom_shape, triangle_type, output):
     image_np = np.array(image)
     mask_np = np.array(mask)
 
-    # Make the mask 3-channel by stacking it
-    mask_3ch = np.stack((mask_np,) * 3, axis=-1)
+    # Create an alpha channel with the mask
+    alpha_channel = np.where(mask_np == 1, 255, 0).astype(np.uint8)
 
-    # Apply the mask
-    result_np = image_np * mask_3ch
+    # Create a new image with RGBA channels
+    result_np = np.dstack((image_np[:, :, :3], alpha_channel))
 
     # Convert the result back to an image
-    result_image = Image.fromarray(result_np)
+    result_image = Image.fromarray(result_np, "RGBA")
 
+    # Save image
     result_image.save(get_image_folder("modified", output))
     result_image.show()
 
