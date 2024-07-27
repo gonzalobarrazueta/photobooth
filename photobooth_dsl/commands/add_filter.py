@@ -15,6 +15,22 @@ def apply_painting_filter(image):
     return Image.fromarray(oil_painting)
 
 
+def apply_comic_filter(image):
+    cv_image = np.array(image)
+    cv_image = cv2.cvtColor(cv_image, cv2.COLOR_RGB2BGR)
+
+    gray = cv2.cvtColor(cv_image, cv2.COLOR_BGR2GRAY)
+    gray = cv2.medianBlur(gray, 5)
+    edges = cv2.adaptiveThreshold(gray, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY, 9, 9)
+
+    color = cv2.bilateralFilter(cv_image, 9, 300, 300)
+
+    comic = cv2.bitwise_and(color, color, mask=edges)
+
+    comic = cv2.cvtColor(comic, cv2.COLOR_BGR2RGB)
+    return Image.fromarray(comic)
+
+
 def apply_filter(image_name, filter_name, output):
 
     original_image_path = get_image_folder("original", image_name)
@@ -30,6 +46,8 @@ def apply_filter(image_name, filter_name, output):
         filtered_image = image.filter(ImageFilter.SHARPEN)
     elif filter_name == "painting":
         filtered_image = apply_painting_filter(image)
+    elif filter_name == "comic":
+        filtered_image = apply_comic_filter(image)
     else:
         raise ValueError(f"Filter '{filter_name}' not supported")
 
