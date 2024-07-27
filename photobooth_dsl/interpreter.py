@@ -3,6 +3,7 @@ from photobooth_dsl.commands.crop_image import crop
 from photobooth_dsl.commands.add_filter import apply_filter
 from photobooth_dsl.commands.crop_aspect import crop_aspect
 from photobooth_dsl.commands.transform import transform_image
+from photobooth_dsl.commands.trim_video import trim_video
 from photobooth_dsl.utils.variables_util import is_variable
 from photobooth_dsl.utils.output_utils import get_output
 
@@ -55,6 +56,15 @@ class PhotoboothTransformer(Transformer):
             image_path = self.variables[image_path]
 
         apply_filter(image_path.strip("'"), filter_name, get_output(output))
+
+    def trim_video(self, args):
+        video_path, start, end, output = args
+
+        # Handle case where the video path is a variable
+        if is_variable(video_path):
+            video_path = self.variables[video_path]
+
+        trim_video(video_path.strip("'"), start, end, get_output(output))
 
 
 class PhotoboothInterpreter:
