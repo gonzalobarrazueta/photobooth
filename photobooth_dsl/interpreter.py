@@ -25,7 +25,7 @@ class PhotoboothTransformer(Transformer):
         if is_variable(image_path):
             image_path = self.variables[image_path]
 
-        crop(image_path.strip("'"), int(width), int(height), None if output is None else output.strip("'"))
+        crop(image_path.strip("'"), int(width), int(height), get_output(output))
         return args
 
     def crop_aspect(self, args):
