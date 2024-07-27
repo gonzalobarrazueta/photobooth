@@ -5,6 +5,7 @@ from photobooth_dsl.commands.crop_aspect import crop_aspect
 from photobooth_dsl.commands.transform import transform_image
 from photobooth_dsl.commands.trim_video import trim_video
 from photobooth_dsl.commands.video_to_gif import video_to_gif
+from photobooth_dsl.commands.adjust_speed import adjust_speed
 from photobooth_dsl.utils.variables_util import is_variable
 from photobooth_dsl.utils.output_utils import get_output
 
@@ -75,6 +76,16 @@ class PhotoboothTransformer(Transformer):
             video_path = self.variables[video_path]
 
         video_to_gif(video_path.strip("'"), get_output(output), start, end)
+
+    def adjust_speed(self, args):
+        video_path, speed, output = args
+        print(video_path, speed, output)
+
+        # Handle case where the video path is a variable
+        if is_variable(video_path):
+            video_path = self.variables[video_path]
+
+        adjust_speed(video_path.strip("'"), speed, get_output(output))
 
 
 class PhotoboothInterpreter:
