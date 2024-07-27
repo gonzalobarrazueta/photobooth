@@ -4,6 +4,7 @@ from photobooth_dsl.commands.add_filter import apply_filter
 from photobooth_dsl.commands.crop_aspect import crop_aspect
 from photobooth_dsl.commands.transform import transform_image
 from photobooth_dsl.commands.trim_video import trim_video
+from photobooth_dsl.commands.video_to_gif import video_to_gif
 from photobooth_dsl.utils.variables_util import is_variable
 from photobooth_dsl.utils.output_utils import get_output
 
@@ -65,6 +66,15 @@ class PhotoboothTransformer(Transformer):
             video_path = self.variables[video_path]
 
         trim_video(video_path.strip("'"), start, end, get_output(output))
+
+    def video_to_gif(self, args):
+        video_path, start, end, output = args
+
+        # Handle case where the video path is a variable
+        if is_variable(video_path):
+            video_path = self.variables[video_path]
+
+        video_to_gif(video_path.strip("'"), get_output(output), start, end)
 
 
 class PhotoboothInterpreter:
