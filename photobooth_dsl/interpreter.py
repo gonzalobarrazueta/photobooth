@@ -1,5 +1,6 @@
 from lark import Lark, Transformer
 from photobooth_dsl.commands.crop_image import crop
+from photobooth_dsl.commands.add_filter import apply_filter
 from photobooth_dsl.commands.crop_aspect import crop_aspect
 from photobooth_dsl.commands.transform import transform_image
 from photobooth_dsl.utils.variables_util import is_variable
@@ -45,6 +46,15 @@ class PhotoboothTransformer(Transformer):
             image_path = self.variables[image_path]
 
         transform_image(image_path.strip("'"), shape, custom_shape, triangle_type, get_output(output))
+
+    def add_filter(self, args):
+        filter_name, image_path, output = args
+
+        # Handle case where the image path is a variable
+        if is_variable(image_path):
+            image_path = self.variables[image_path]
+
+        apply_filter(image_path.strip("'"), filter_name, get_output(output))
 
 
 class PhotoboothInterpreter:
