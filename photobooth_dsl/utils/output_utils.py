@@ -24,6 +24,7 @@ def get_image_folder(folder, value):
 def get_shape(shape):
     return "photobooth_dsl/images/svg_shapes/" + shape + ".svg"
 
+
 def get_output(output):
     if output is None:
         return None
