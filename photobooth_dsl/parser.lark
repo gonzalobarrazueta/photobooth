@@ -11,9 +11,9 @@ SMART: "smart"
 IMAGE_SHAPES: "circular" | "elliptical" | "triangular" | "hexagonal" | "heart" | "star" | "rounded_rectangle" | "rhombus" | "custom"
 TRIANGLE_TYPE: "equilateral" | "isosceles" | "scalene"
 CUSTOM_SHAPE: "'" ANY_TEXT ".svg" "'"
-FILTERS: "mono" | "sepia" | "comic" | "painting"
+FILTERS: "mono" | "sepia" | "comic" | "painting" | "sharpen"
 COLORS: "white" | "black" | "green" | "yellow" | "blue"
-VIDEO_PATH: "'" ANY_TEXT ".mp4" "'"
+VIDEO_PATH: "'" ANY_TEXT (".mp4" | ".mov" | ".gif") "'"
 VIDEO_SEGMENT: /[0-9]+/ ":" /[0-9]+/
 SPEED_RATES: "0.5" | "0.50" | "1.25" | "1.5" | "1.50" | "2" | "2.0"
 AUDIO_PATH: "'" ANY_TEXT ".mp3" "'"
@@ -30,9 +30,9 @@ add_filter: "add" "filter=" FILTERS (IMAGE_PATH | VARIABLE) ["output=" OUTPUT]
 paint_bg: "paint" "background" (IMAGE_PATH | VARIABLE) "color=" COLORS ["output=" OUTPUT]
 blur_bg: "blur" "background" (IMAGE_PATH | VARIABLE) ["output=" OUTPUT]
 trim_video: "trim" "video" (VIDEO_PATH | VARIABLE) "from=" VIDEO_SEGMENT "to=" VIDEO_SEGMENT ["output=" OUTPUT]
-video_to_gif: "convert" "video" (VIDEO_PATH | VARIABLE) "from=" VIDEO_SEGMENT "to=" VIDEO_SEGMENT ["output=" OUTPUT]
+video_to_gif: "convert" "video" (VIDEO_PATH | VARIABLE) ["from=" VIDEO_SEGMENT] ["to=" VIDEO_SEGMENT] ["output=" OUTPUT]
 merge_videos: "merge" "videos" (VIDEO_PATH | VARIABLE) (VIDEO_PATH | VARIABLE) ["output=" OUTPUT]
-adjust_speed: "adjust" "speed" (VIDEO_PATH | VARIABLE) "rate=" SPEED_RATES ["output=" OUTPUT]
+adjust_speed: "adjust" "speed" (VIDEO_PATH | VARIABLE) "speed=" SPEED_RATES ["output=" OUTPUT]
 extract_audio: "extract" "audio" (VIDEO_PATH | VARIABLE) ["output=" OUTPUT]
 command: set_var | crop_image | crop_aspect | compress_image | transform_image | convert_to_gif | convert_to_gif | add_filter | paint_bg | blur_bg | trim_video | video_to_gif | merge_videos | adjust_speed | extract_audio
 
