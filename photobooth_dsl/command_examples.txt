@@ -1,0 +1,31 @@
+CROP ASPECT RATIO COMMAND
+
+python main.py "crop image 'friends.jpg' aspect-ratio=1:1 output='friends-square.jpg'"
+--------------------------------------------------------
+TRANSFORM COMMAND
+
+python main.py "transform 'sanrio.jpg' shape=heart output='sanrio-heart.png'"
+
+python main.py "transform 'teddy_bear.jpg' shape=star output='teddy_bear-star.png'"
+--------------------------------------------------------
+ADD FILTER COMMAND
+
+python main.py "add filter=comic 'arco.jpg' output='arco_comic.jpg'"
+
+python main.py "add filter=painting 'mountain.jpg' output='mountain_painting.jpg'"
+--------------------------------------------------------
+TRIM VIDEO COMMAND
+
+"trim video 'bird.mov' from=00:46 to=1:09 output='bird_cropped.mov'"
+--------------------------------------------------------
+VIDEO TO GIF COMMAND
+
+"convert video 'playful_cat.mp4' output='playful_cat.gif'"
+
+python main.py "convert video 'playful_cat.mp4' from=00:04 to=00:08 output='playful_cat.gif'"
+--------------------------------------------------------
+ADJUST SPEED COMMAND
+
+python main.py "adjust speed 'playful_cat.mp4' speed=1.5 output='playful_cat_faster.mp4'"
+
+python main.py "adjust speed 'horses_running.mp4`' speed=1.5 output='horses_running_faster.mp4'"
